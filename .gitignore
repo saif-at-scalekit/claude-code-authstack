@@ -3,8 +3,6 @@
 .env.local
 *.env
 
-# MCP server tokens and local config
-.mcp.json
 
 # Dependencies (if your plugin includes scripts)
 node_modules/
