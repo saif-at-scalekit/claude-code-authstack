@@ -36,3 +36,7 @@ Thumbs.db
 tmp/
 temp/
 *.tmp
+
+spec/
+.specify/
+.cursor/
