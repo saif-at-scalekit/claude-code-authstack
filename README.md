@@ -19,12 +19,6 @@ Once installed, you can:
   See `specs/001-scalekit-dryrun-skill/quickstart.md` for a guided workflow.
 
 
-#### Screenshots
-![](./images/2026-02-09-19-40-49.png)
-
-![](./images/2026-02-09-19-43-05.png)
-
-
 ## Known items
 
 - Sometimes when the plugin names changes in both `plugin.json` and `marketplace.json`, the updates don't work.

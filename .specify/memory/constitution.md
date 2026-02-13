@@ -1,16 +1,14 @@
 <!--
 Sync Impact Report
-- Version change: 1.3.0 → 1.4.0
+- Version change: 1.4.0 → 1.4.1
 - Modified principles:
-  - II. Single-Purpose Capabilities & Explicit Contracts (expanded with skill-first and invocation guidance)
-- Added sections:
-  - Skill and command layering policy (under Claude Code Plugin Conventions)
-  - Marketplace discovery and installability checks (under Claude Code Plugin Conventions)
-- Removed sections: none
+  - IV. Quality, Testing, and Deterministic Tooling → IV. Quality and Deterministic Tooling (testing requirements and mentions removed)
+- Added sections: none
+- Removed sections: none (content removed from Principle IV and related Development Workflow / CI bullets)
 - Templates requiring updates:
-  - ✅ .specify/templates/plan-template.md (Constitution Check expanded for skill-first layering and manual invocation paths)
-  - ✅ .specify/templates/spec-template.md (Constitution Check expanded for skill-first layering, `disable-model-invocation`, and plugin discoverability)
-  - ✅ .specify/templates/tasks-template.md (T001 expanded for plugin README and explicit invocation entrypoint checks)
+  - ✅ .specify/templates/plan-template.md (Principle IV label and Constitution Check updated; Testing row removed from Technical Context)
+  - ✅ .specify/templates/spec-template.md (Constitution Check: Principle IV and Quality & tooling; User Scenarios & Acceptance, independent verification wording)
+  - ✅ .specify/templates/tasks-template.md (optional verification note de-emphasized test wording)
   - ⚠ .specify/templates/commands/*.md (directory still missing; no command templates available to validate)
 - Follow-up TODOs:
   - Add `.specify/templates/commands/` templates so constitution-driven command guidance can be enforced automatically.
@@ -30,7 +28,7 @@ The repository MUST follow Claude Code plugin layout defaults:
 - MCP server configurations defined in `.mcp.json` at the plugin root; `.lsp.json` present only when language-server configuration is explicitly shipped.
 - Repository structure, file naming, and plugin configuration MUST be kept in sync with this layout; deviations MUST be documented and justified in the constitution’s Governance section.
 
-**Rationale**: A stable, predictable layout is critical for Claude Code, MCP servers, and humans to understand and extend the plugin safely. Enforcing a single, explicit layout enables tooling, documentation, and tests to remain deterministic and automatable.
+**Rationale**: A stable, predictable layout is critical for Claude Code, MCP servers, and humans to understand and extend the plugin safely. Enforcing a single, explicit layout enables tooling and documentation to remain deterministic and automatable.
 
 ### II. Single-Purpose Capabilities & Explicit Contracts (NON-NEGOTIABLE)
 
@@ -58,16 +56,15 @@ Security rules for this repository are:
 
 **Rationale**: Auth-focused plugins and MCP integrations handle sensitive configuration and access. Failing safely, documenting environment needs, and enforcing least privilege significantly reduces the blast radius of misconfiguration or compromise.
 
-### IV. Quality, Testing, and Deterministic Tooling
+### IV. Quality and Deterministic Tooling
 
 Quality rules for this repository are:
-- Lint and test commands MUST be defined and invocable in a CI-friendly way (e.g., `npm test`, `npm run lint`, or equivalent).
+- Lint and formatting commands MUST be defined and invocable in a CI-friendly way (e.g., `npm run lint`, or equivalent).
 - Deterministic formatting MUST be enforced (e.g., Prettier, eslint with `--fix`, or language-appropriate formatter) and integrated into CI where possible.
-- New commands/skills/agents MUST be covered by at least basic tests (unit, integration, or contract) where reasonably applicable; explicitly document any exceptions.
 - Prefer small, composable skills and helpers over one giant skill or agent; when a capability grows beyond a single, coherent purpose, it MUST be factored into smaller parts.
-- Any CI pipeline MUST treat failing tests, lint, or formatting checks as blocking for merge.
+- Any CI pipeline MUST treat failing lint or formatting checks as blocking for merge.
 
-**Rationale**: Small, composable, well-tested units are easier to reason about, safer for automation, and more resilient to future changes. Deterministic tooling removes style debates and makes CI a reliable gate rather than a source of surprises.
+**Rationale**: Small, composable units with deterministic tooling are easier to reason about, safer for automation, and more resilient to future changes. Deterministic formatting removes style debates and makes CI a reliable gate rather than a source of surprises.
 
 ### V. Maintainability, Naming, and Documentation-First Behavior
 
@@ -201,7 +198,7 @@ The repository structure MUST, at minimum, include:
 - `.lsp.json` ONLY when shipping language-server configuration as part of the plugin.
 - Optional: `.claude-plugin/marketplace.json` for marketplace discovery; when present, it MUST conform to
   the marketplace schema (see Marketplace manifest above).
-- A `README` that explains how to install, configure (including env vars), and test the plugin.
+- A `README` that explains how to install, configure (including env vars), and use the plugin.
 
 Any deviations from this structure MUST be documented in the Governance section and, where relevant, in `README`.
 
@@ -231,14 +228,14 @@ Development of this plugin MUST follow these workflow and quality gates:
   - Repo layout compliance with Principle I.
   - Capability design compliance with Principle II (single-purpose, explicit contracts, usage examples).
   - Security compliance with Principle III (no committed secrets, least-privilege MCP configs, documented env vars, safe failure modes).
-  - Quality and testing compliance with Principle IV (lint/test/format commands defined and wired into CI).
+  - Quality compliance with Principle IV (lint and format commands defined and wired into CI).
   - Maintainability and documentation compliance with Principle V (naming, changelog, compatibility notes, and docs updated).
   - Marketplace discoverability and installability checks for any plugin listed in `.claude-plugin/marketplace.json`.
 - **Review Process**:
   - Every PR MUST be reviewed for constitution compliance before merge.
   - Any intentional deviation MUST be explicitly documented in the PR description and, when long-lived, codified as a governance amendment.
 - **CI & Automation**:
-  - CI MUST run lint, tests, and format checks as non-optional gates for main branches.
+  - CI MUST run lint and format checks as non-optional gates for main branches.
   - Automated checks SHOULD validate `.claude-plugin/plugin.json`, `.mcp.json`, `.claude-plugin/marketplace.json`,
     source-directory existence for marketplace entries, and directory layout for structural correctness where feasible.
 
@@ -274,4 +271,4 @@ This constitution defines binding rules for the Claude Code Auth Plugin and supe
   - Verify that repository layout, documentation, and MCP configurations remain aligned with this constitution.
   - Identify and schedule work to close any gaps between practice and constitutional rules.
 
-**Version**: 1.4.0 | **Ratified**: 2026-02-12 | **Last Amended**: 2026-02-13
+**Version**: 1.4.1 | **Ratified**: 2026-02-12 | **Last Amended**: 2026-02-13

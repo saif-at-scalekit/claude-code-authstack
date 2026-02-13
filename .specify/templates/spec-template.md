@@ -5,17 +5,17 @@
 **Status**: Draft
 **Input**: User description: "$ARGUMENTS"
 
-## User Scenarios & Testing *(mandatory)*
+## User Scenarios & Acceptance *(mandatory)*
 
 <!--
   IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
+  Each user story/journey must be INDEPENDENTLY VERIFIABLE - meaning if you implement just ONE of them,
   you should still have a viable MVP (Minimum Viable Product) that delivers value.
 
   Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
   Think of each story as a standalone slice of functionality that can be:
   - Developed independently
-  - Tested independently
+  - Verified independently
   - Deployed independently
   - Demonstrated to users independently
 -->
@@ -26,7 +26,7 @@
 
 **Why this priority**: [Explain the value and why it has this priority level]
 
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
+**Independent verification**: [Describe how this can be verified independently - e.g., "Can be fully verified by [specific action] and delivers [specific value]"]
 
 **Acceptance Scenarios**:
 
@@ -41,7 +41,7 @@
 
 **Why this priority**: [Explain the value and why it has this priority level]
 
-**Independent Test**: [Describe how this can be tested independently]
+**Independent verification**: [Describe how this can be verified independently]
 
 **Acceptance Scenarios**:
 
@@ -55,7 +55,7 @@
 
 **Why this priority**: [Explain the value and why it has this priority level]
 
-**Independent Test**: [Describe how this can be tested independently]
+**Independent verification**: [Describe how this can be verified independently]
 
 **Acceptance Scenarios**:
 
@@ -108,14 +108,14 @@
   - Repository & Plugin Layout (Principle I)
   - Single-Purpose Capabilities & Explicit Contracts (Principle II)
   - Security, Secrets, and Least Privilege (Principle III)
-  - Quality, Testing, and Deterministic Tooling (Principle IV)
+  - Quality and Deterministic Tooling (Principle IV)
   - Maintainability, Naming, and Documentation-First Behavior (Principle V)
 -->
 
 - Layout & structure: [How this feature fits within `.claude-plugin/` (including `plugin.json` and optional `marketplace.json` per schema), `commands/`, `skills/`, `agents/`, `.mcp.json`]
 - Capability contracts: [How commands/skills/agents remain single-purpose with explicit inputs/outputs and examples; include whether each capability is skill-first, command-wrapped, or both, and how manual invocation works when `disable-model-invocation: true`]
 - Security & MCP: [How secrets are kept out of the repo, env vars are documented, and MCP scopes are least-privilege]
-- Quality & testing: [Planned linting, testing, and formatting expectations for this feature]
+- Quality & tooling: [Planned linting and formatting expectations for this feature]
 - Maintainability & docs: [Naming, changelog impact, compatibility notes, and documentation updates required, including plugin README and invocation discoverability for marketplace-listed plugins]
 
 ## Success Criteria *(mandatory)*

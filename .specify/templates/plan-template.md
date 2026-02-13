@@ -20,7 +20,6 @@
 **Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]
 **Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]
 **Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]
 **Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
 **Project Type**: [single/web/mobile - determines source structure]
 **Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]
@@ -41,8 +40,7 @@ For this repository, the implementation plan MUST explicitly address the followi
   skill-first, command-wrapped, or both; if a skill uses `disable-model-invocation: true`, describe the manual invocation path.
 - **Security, Secrets, and Least Privilege (Principle III)**: Document new or changed environment variables, MCP scopes/permissions,
   and how the design avoids committing secrets and fails safely on external errors.
-- **Quality, Testing, and Deterministic Tooling (Principle IV)**: Describe how linting, tests, and formatting will be exercised in CI
-  for this work (including any new test coverage).
+- **Quality and Deterministic Tooling (Principle IV)**: Describe how linting and formatting will be exercised in CI for this work.
 - **Maintainability, Naming, and Documentation-First Behavior (Principle V)**: Describe planned documentation updates (SKILL.md,
   agent docs, README, changelog, compatibility notes) and confirm naming follows `kebab-case` and other repository conventions.
 - **Marketplace Discoverability & Installability**: For each marketplace-listed plugin touched by the change, confirm source path validity,
