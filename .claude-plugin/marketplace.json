@@ -1,8 +1,8 @@
 {
   "name": "scalekit-auth-stack",
   "owner": {
-    "name": "Saif Ali Shaik",
-    "email": "hi@scalekit.com"
+    "name": "Scalekit Inc",
+    "email": "support@scalekit.com"
   },
     "source": {
     "source": "github",
@@ -15,7 +15,14 @@
   "plugins":[
     {
       "name": "dryrun",
-      "source": "./plugins/dryrun"
+      "source": "./plugins/dryrun",
+      "description": "Quickly test Scalekit authentication setup end-to-end before writing integration code using the dryrun tool.",
+      "version": "1.1.0",
+      "author": {
+        "name": "Scalekit Inc"
+      },
+      "category": "testing",
+      "tags": ["testing", "dryrun", "scalekit", "authentication", "validation"]
     }
   ]
 }
