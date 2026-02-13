@@ -15,7 +15,7 @@ To add this to your claude code
 
 Once installed, you can:
 
-- Use the **Scalekit dryrun Skill** to validate your Scalekit auth configuration from Claude Code.  
+- Use the **Scalekit dryrun Skill** to validate your Scalekit auth configuration from Claude Code.
   See `specs/001-scalekit-dryrun-skill/quickstart.md` for a guided workflow.
 
 
@@ -23,3 +23,9 @@ Once installed, you can:
 ![](./images/2026-02-09-19-40-49.png)
 
 ![](./images/2026-02-09-19-43-05.png)
+
+
+## Known items
+
+- Sometimes when the plugin names changes in both `plugin.json` and `marketplace.json`, the updates don't work.
+- Installation a plugin and immediately doesn't work
