@@ -1,18 +1,19 @@
 <!--
 Sync Impact Report
-- Version change: 1.2.0 → 1.3.0
+- Version change: 1.3.0 → 1.4.0
 - Modified principles:
-  - None (Claude Code Plugin Conventions unchanged in title; Marketplace manifest subsection added)
+  - II. Single-Purpose Capabilities & Explicit Contracts (expanded with skill-first and invocation guidance)
 - Added sections:
-  - Marketplace manifest (under Claude Code Plugin Conventions); reference file .specify/references/marketplace.schema.reference.json
+  - Skill and command layering policy (under Claude Code Plugin Conventions)
+  - Marketplace discovery and installability checks (under Claude Code Plugin Conventions)
 - Removed sections: none
 - Templates requiring updates:
-  - ✅ .specify/templates/plan-template.md (Constitution Check + layout: marketplace.json and schema compliance)
-  - ✅ .specify/templates/spec-template.md (Constitution Check: layout bullet includes marketplace.json)
-  - ✅ .specify/templates/tasks-template.md (T001: plugin layout includes marketplace.json when present)
-  - ⚠ .specify/templates/commands/*.md (directory missing; command templates to be added under Claude Code plugin layout)
+  - ✅ .specify/templates/plan-template.md (Constitution Check expanded for skill-first layering and manual invocation paths)
+  - ✅ .specify/templates/spec-template.md (Constitution Check expanded for skill-first layering, `disable-model-invocation`, and plugin discoverability)
+  - ✅ .specify/templates/tasks-template.md (T001 expanded for plugin README and explicit invocation entrypoint checks)
+  - ⚠ .specify/templates/commands/*.md (directory still missing; no command templates available to validate)
 - Follow-up TODOs:
-  - None (marketplace schema reference added; .claude-plugin/marketplace.json updated to conform)
+  - Add `.specify/templates/commands/` templates so constitution-driven command guidance can be enforced automatically.
 -->
 
 # Claude Code Auth Plugin Constitution
@@ -39,6 +40,10 @@ Every command, skill, and agent MUST:
 - Include 1–2 concrete usage examples that demonstrate typical usage and expected outputs.
 - Avoid hidden side effects, especially network calls, writes, or external process invocation not stated in the description and examples.
 - Avoid overlapping responsibilities across commands/skills/agents; when overlap is unavoidable, document the boundaries and how users should choose between them.
+- Follow skill-first layering:
+  - A capability SHOULD be authored as a skill first when reusable knowledge or workflow behavior is the primary goal.
+  - Commands SHOULD be added as explicit UX wrappers when users need deterministic slash-command entrypoints, stricter argument contracts, or easier discoverability.
+  - If a skill sets `disable-model-invocation: true`, the plugin MUST provide an explicit manual invocation path (for example, a slash command) and document it.
 
 **Rationale**: Claude Code plugins are orchestrated by LLMs and humans that rely on clear contracts. Single-purpose, explicitly documented capabilities minimize ambiguity, improve safety, and simplify composition into higher-level workflows.
 
@@ -156,6 +161,35 @@ When the plugin is intended for Claude Code marketplace discovery:
 **Rationale**: Aligning with the official marketplace schema ensures the plugin can be discovered, validated,
 and integrated by Claude Code tooling; the reference file keeps the project’s manifest accurate and consistent.
 
+### Skill and Command Layering Policy
+
+When authoring plugin capabilities:
+
+- Skills are the primary extension mechanism for reusable knowledge and workflows.
+- Commands are optional wrappers around workflows and SHOULD be used when explicit user invocation and
+  argument control improve usability.
+- Do not treat commands and skills as mutually exclusive; a command MAY delegate to a skill-guided workflow.
+- For skills that are intentionally hidden from automatic model invocation (`disable-model-invocation: true`),
+  the repository MUST document direct invocation examples and SHOULD provide a command wrapper.
+- Capability documentation MUST explicitly state whether execution is:
+  - model-invocable skill behavior,
+  - command-triggered behavior,
+  - or both.
+
+### Marketplace Discovery and Installability Checks
+
+For each plugin listed in `.claude-plugin/marketplace.json`:
+
+- `source` MUST resolve to a directory that exists in the repository.
+- The source directory MUST contain `.claude-plugin/plugin.json`.
+- The source directory SHOULD contain a `README.md` with install/use guidance so plugin UI surfaces
+  useful content instead of blank details.
+- The source directory MUST expose at least one documented invocation entrypoint:
+  - a slash command under `commands/`, or
+  - a clearly documented skill invocation path.
+- If all skills in a plugin are hidden from model invocation, a command entrypoint MUST be provided.
+- Troubleshooting guidance for plugin cache and refresh behavior SHOULD be documented in repository-level docs.
+
 ### Repository Structure
 
 The repository structure MUST, at minimum, include:
@@ -199,12 +233,14 @@ Development of this plugin MUST follow these workflow and quality gates:
   - Security compliance with Principle III (no committed secrets, least-privilege MCP configs, documented env vars, safe failure modes).
   - Quality and testing compliance with Principle IV (lint/test/format commands defined and wired into CI).
   - Maintainability and documentation compliance with Principle V (naming, changelog, compatibility notes, and docs updated).
+  - Marketplace discoverability and installability checks for any plugin listed in `.claude-plugin/marketplace.json`.
 - **Review Process**:
   - Every PR MUST be reviewed for constitution compliance before merge.
   - Any intentional deviation MUST be explicitly documented in the PR description and, when long-lived, codified as a governance amendment.
 - **CI & Automation**:
   - CI MUST run lint, tests, and format checks as non-optional gates for main branches.
-  - Automated checks SHOULD validate `.claude-plugin/plugin.json`, `.mcp.json`, and directory layout for structural correctness where feasible.
+  - Automated checks SHOULD validate `.claude-plugin/plugin.json`, `.mcp.json`, `.claude-plugin/marketplace.json`,
+    source-directory existence for marketplace entries, and directory layout for structural correctness where feasible.
 
 ## Governance
 
@@ -238,4 +274,4 @@ This constitution defines binding rules for the Claude Code Auth Plugin and supe
   - Verify that repository layout, documentation, and MCP configurations remain aligned with this constitution.
   - Identify and schedule work to close any gaps between practice and constitutional rules.
 
-**Version**: 1.3.0 | **Ratified**: 2026-02-12 | **Last Amended**: 2026-02-13
+**Version**: 1.4.0 | **Ratified**: 2026-02-12 | **Last Amended**: 2026-02-13

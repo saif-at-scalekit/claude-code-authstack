@@ -17,14 +17,14 @@
   the iteration process.
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
+**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]
+**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]
+**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
+**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]
 **Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
+**Project Type**: [single/web/mobile - determines source structure]
+**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]
+**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]
 **Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
 
 ## Constitution Check
@@ -33,17 +33,20 @@
 
 For this repository, the implementation plan MUST explicitly address the following:
 
-- **Repository & Plugin Layout (Principle I)**: Confirm that the proposed changes respect the Claude Code plugin layout  
-  (`.claude-plugin/plugin.json`, `commands/`, `skills/`, `agents/`, `.mcp.json`, optional `.lsp.json`, optional  
+- **Repository & Plugin Layout (Principle I)**: Confirm that the proposed changes respect the Claude Code plugin layout
+  (`.claude-plugin/plugin.json`, `commands/`, `skills/`, `agents/`, `.mcp.json`, optional `.lsp.json`, optional
   `.claude-plugin/marketplace.json` per marketplace schema when used for discovery) and call out any deviations.
-- **Single-Purpose Capabilities & Explicit Contracts (Principle II)**: List all new or changed commands/skills/agents and state their  
-  single purpose, inputs, outputs, side effects, and 1–2 intended usage examples.
-- **Security, Secrets, and Least Privilege (Principle III)**: Document new or changed environment variables, MCP scopes/permissions,  
+- **Single-Purpose Capabilities & Explicit Contracts (Principle II)**: List all new or changed commands/skills/agents and state their
+  single purpose, inputs, outputs, side effects, and 1–2 intended usage examples. Also state whether each capability is
+  skill-first, command-wrapped, or both; if a skill uses `disable-model-invocation: true`, describe the manual invocation path.
+- **Security, Secrets, and Least Privilege (Principle III)**: Document new or changed environment variables, MCP scopes/permissions,
   and how the design avoids committing secrets and fails safely on external errors.
-- **Quality, Testing, and Deterministic Tooling (Principle IV)**: Describe how linting, tests, and formatting will be exercised in CI  
+- **Quality, Testing, and Deterministic Tooling (Principle IV)**: Describe how linting, tests, and formatting will be exercised in CI
   for this work (including any new test coverage).
-- **Maintainability, Naming, and Documentation-First Behavior (Principle V)**: Describe planned documentation updates (SKILL.md,  
+- **Maintainability, Naming, and Documentation-First Behavior (Principle V)**: Describe planned documentation updates (SKILL.md,
   agent docs, README, changelog, compatibility notes) and confirm naming follows `kebab-case` and other repository conventions.
+- **Marketplace Discoverability & Installability**: For each marketplace-listed plugin touched by the change, confirm source path validity,
+  `.claude-plugin/plugin.json` presence, plugin README coverage, and at least one documented invocation entrypoint.
 
 ## Project Structure
 

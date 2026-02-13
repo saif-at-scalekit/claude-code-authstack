@@ -25,21 +25,21 @@ description: "Task list template for feature implementation"
 - **Mobile**: `api/src/`, `ios/src/` or `android/src/`
 - Paths shown below assume single project - adjust based on plan.md structure
 
-<!-- 
+<!--
   ============================================================================
   IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
-  
+
   The /speckit.tasks command MUST replace these with actual tasks based on:
   - User stories from spec.md (with their priorities P1, P2, P3...)
   - Feature requirements from plan.md
   - Entities from data-model.md
   - Endpoints from contracts/
-  
+
   Tasks MUST be organized by user story so each story can be:
   - Implemented independently
   - Tested independently
   - Delivered as an MVP increment
-  
+
   DO NOT keep these sample tasks in the generated tasks.md file.
   ============================================================================
 -->
@@ -48,9 +48,10 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project structure per implementation plan and repository constitution  
-      (e.g., Claude Code plugin layout: `.claude-plugin/plugin.json`, `commands/`, `skills/`, `agents/`, `.mcp.json`;  
-      optional `.claude-plugin/marketplace.json` conforming to marketplace schema when used for discovery)
+- [ ] T001 Create project structure per implementation plan and repository constitution
+      (e.g., Claude Code plugin layout: `.claude-plugin/plugin.json`, `commands/`, `skills/`, `agents/`, `.mcp.json`;
+      optional `.claude-plugin/marketplace.json` conforming to marketplace schema when used for discovery; plugin
+      README and at least one documented invocation entrypoint per marketplace-listed plugin)
 - [ ] T002 Initialize [language] project with [framework] dependencies
 - [ ] T003 [P] Configure linting and formatting tools (CI-friendly commands)
 
