@@ -49,7 +49,8 @@ description: "Task list template for feature implementation"
 **Purpose**: Project initialization and basic structure
 
 - [ ] T001 Create project structure per implementation plan and repository constitution  
-      (e.g., Claude Code plugin layout: `.claude-plugin/plugin.json`, `commands/`, `skills/`, `agents/`, `.mcp.json`)
+      (e.g., Claude Code plugin layout: `.claude-plugin/plugin.json`, `commands/`, `skills/`, `agents/`, `.mcp.json`;  
+      optional `.claude-plugin/marketplace.json` conforming to marketplace schema when used for discovery)
 - [ ] T002 Initialize [language] project with [framework] dependencies
 - [ ] T003 [P] Configure linting and formatting tools (CI-friendly commands)
 

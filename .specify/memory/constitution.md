@@ -1,18 +1,18 @@
 <!--
 Sync Impact Report
-- Version change: 1.1.0 → 1.2.0
+- Version change: 1.2.0 → 1.3.0
 - Modified principles:
-  - Claude Code Plugin Conventions → Claude Code Plugin Conventions (expanded SKILL.md authoring best practices)
+  - None (Claude Code Plugin Conventions unchanged in title; Marketplace manifest subsection added)
 - Added sections:
-  - None (existing SKILL.md section materially expanded)
+  - Marketplace manifest (under Claude Code Plugin Conventions); reference file .specify/references/marketplace.schema.reference.json
 - Removed sections: none
 - Templates requiring updates:
-  - ✅ .specify/templates/plan-template.md (no change required for this amendment; already delegates to constitution)
-  - ✅ .specify/templates/spec-template.md (no change required for this amendment; already delegates to constitution)
-  - ✅ .specify/templates/tasks-template.md (no change required for this amendment; already delegates to constitution)
+  - ✅ .specify/templates/plan-template.md (Constitution Check + layout: marketplace.json and schema compliance)
+  - ✅ .specify/templates/spec-template.md (Constitution Check: layout bullet includes marketplace.json)
+  - ✅ .specify/templates/tasks-template.md (T001: plugin layout includes marketplace.json when present)
   - ⚠ .specify/templates/commands/*.md (directory missing; command templates to be added under Claude Code plugin layout)
 - Follow-up TODOs:
-  - None (all placeholders resolved; external docs and SKILL.md practices captured in conventions)
+  - None (marketplace schema reference added; .claude-plugin/marketplace.json updated to conform)
 -->
 
 # Claude Code Auth Plugin Constitution
@@ -139,6 +139,23 @@ Across commands, skills, agents, and MCP servers:
   - Avoid partial success that leaves users in an ambiguous state.
 - Retry behavior MUST be documented and bounded; infinite or uncontrolled retries are prohibited.
 
+### Marketplace Manifest
+
+When the plugin is intended for Claude Code marketplace discovery:
+
+- A marketplace manifest MAY be provided at `.claude-plugin/marketplace.json`.
+- If present, the file MUST conform to the official Claude Code marketplace schema:
+  `https://anthropic.com/claude-code/marketplace.schema.json`.
+- The manifest MUST include: `$schema`, `name`, `description`, `owner`, and a `plugins` array; each plugin
+  entry MUST include at least `name` and `source` (string path or `{ "source": "url", "url": "..." }`).
+  Optional fields (e.g., `version`, `author`, `category`, `homepage`, `lspServers`, `tags`) SHOULD be used
+  where they improve discovery and compatibility.
+- The canonical structure and representative examples are maintained in this repository at
+  `.specify/references/marketplace.schema.reference.json` for authoring and validation reference.
+
+**Rationale**: Aligning with the official marketplace schema ensures the plugin can be discovered, validated,
+and integrated by Claude Code tooling; the reference file keeps the project’s manifest accurate and consistent.
+
 ### Repository Structure
 
 The repository structure MUST, at minimum, include:
@@ -148,6 +165,8 @@ The repository structure MUST, at minimum, include:
 - `agents/` for agent markdown definitions.
 - `.mcp.json` for MCP server configuration, present only when MCP servers are defined.
 - `.lsp.json` ONLY when shipping language-server configuration as part of the plugin.
+- Optional: `.claude-plugin/marketplace.json` for marketplace discovery; when present, it MUST conform to
+  the marketplace schema (see Marketplace manifest above).
 - A `README` that explains how to install, configure (including env vars), and test the plugin.
 
 Any deviations from this structure MUST be documented in the Governance section and, where relevant, in `README`.
@@ -162,6 +181,8 @@ The following official documentation is considered authoritative for plugin, ski
 - [Hooks guide](https://code.claude.com/docs/en/hooks-guide)
 - [Sub-agents](https://code.claude.com/docs/en/sub-agents)
 - [Discover plugins](https://code.claude.com/docs/en/discover-plugins)
+- [Marketplace schema](https://anthropic.com/claude-code/marketplace.schema.json) (canonical schema for
+  `marketplace.json`; reference structure in this repo: `.specify/references/marketplace.schema.reference.json`)
 - [Troubleshooting](https://code.claude.com/docs/en/troubleshooting)
 - [Model Context Protocol (MCP)](https://code.claude.com/docs/en/mcp)
 - [Skill vs Subagent](https://code.claude.com/docs/en/features-overview#skill-vs-subagent)
@@ -217,4 +238,4 @@ This constitution defines binding rules for the Claude Code Auth Plugin and supe
   - Verify that repository layout, documentation, and MCP configurations remain aligned with this constitution.
   - Identify and schedule work to close any gaps between practice and constitutional rules.
 
-**Version**: 1.2.0 | **Ratified**: 2026-02-12 | **Last Amended**: 2026-02-12
+**Version**: 1.3.0 | **Ratified**: 2026-02-12 | **Last Amended**: 2026-02-13

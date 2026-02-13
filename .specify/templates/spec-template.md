@@ -112,7 +112,7 @@
   - Maintainability, Naming, and Documentation-First Behavior (Principle V)
 -->
 
-- Layout & structure: [How this feature fits within `.claude-plugin/`, `commands/`, `skills/`, `agents/`, `.mcp.json`]
+- Layout & structure: [How this feature fits within `.claude-plugin/` (including `plugin.json` and optional `marketplace.json` per schema), `commands/`, `skills/`, `agents/`, `.mcp.json`]
 - Capability contracts: [How commands/skills/agents remain single-purpose with explicit inputs/outputs and examples]
 - Security & MCP: [How secrets are kept out of the repo, env vars are documented, and MCP scopes are least-privilege]
 - Quality & testing: [Planned linting, testing, and formatting expectations for this feature]

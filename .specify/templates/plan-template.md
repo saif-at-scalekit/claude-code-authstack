@@ -34,7 +34,8 @@
 For this repository, the implementation plan MUST explicitly address the following:
 
 - **Repository & Plugin Layout (Principle I)**: Confirm that the proposed changes respect the Claude Code plugin layout  
-  (`.claude-plugin/plugin.json`, `commands/`, `skills/`, `agents/`, `.mcp.json`, optional `.lsp.json`) and call out any deviations.
+  (`.claude-plugin/plugin.json`, `commands/`, `skills/`, `agents/`, `.mcp.json`, optional `.lsp.json`, optional  
+  `.claude-plugin/marketplace.json` per marketplace schema when used for discovery) and call out any deviations.
 - **Single-Purpose Capabilities & Explicit Contracts (Principle II)**: List all new or changed commands/skills/agents and state their  
   single purpose, inputs, outputs, side effects, and 1–2 intended usage examples.
 - **Security, Secrets, and Least Privilege (Principle III)**: Document new or changed environment variables, MCP scopes/permissions,  
